@@ -13,20 +13,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val model : WeatherViewModel by viewModels()
 
-    val spinner : Spinner by lazy {findViewById(R.id.country)}
+    val spinner : Spinner by lazy {findViewById(R.id.spinner)}
 
-    private lateinit var country : TextView
     private lateinit var desc : TextView
     private lateinit var temp : TextView
     private lateinit var humidity : TextView
     private lateinit var pressure : TextView
-    var countries = arrayOf<String>("Tunis", "London", "Madrid")
+    var countries = arrayOf("Tunis", "London", "Madrid")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        //country = binding.country
         desc = binding.desc
         temp = binding.temperature
         humidity = binding.humidity
@@ -42,8 +40,10 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                val country = countries.get(position)
-                Toast.makeText(this@MainActivity, "$country", Toast.LENGTH_LONG).show()
+                //val country = countries.get(position)
+                val country = spinner.selectedItem.toString()
+                Toast.makeText(this@MainActivity, country, Toast.LENGTH_LONG).show()
+                model.getWeather(country)
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {
@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         }
         model.weather.observe(this, Observer {
             if(it != null){
-                //country.text = it.name
                 temp.text = it.main.temp.toString()
                 desc.text = it.weather[0].description
                 humidity.text = it.main.humidity.toString()
