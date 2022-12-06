@@ -1,9 +1,11 @@
 package com.example.tp5_android
 
+import android.content.Intent
 import androidx.activity.viewModels
 import com.example.tp5_android.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.Observer
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var temp : TextView
     private lateinit var humidity : TextView
     private lateinit var pressure : TextView
-    var countries = arrayOf("Tunis", "London", "Madrid")
+    var countries = arrayOf("Madrid", "London", "Tunis")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,5 +61,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    fun goToMore(view: View) {
+        val intent = Intent(view.context,DetailsActivity::class.java)
+        intent.putExtra("country",spinner.selectedItem.toString())
+        Log.d("country", spinner.selectedItem.toString())
+        startActivity(intent)
     }
 }

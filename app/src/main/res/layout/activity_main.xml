@@ -47,59 +47,68 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/humidityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:text="Humidity"
+        android:textColor="#3A3A3A"
+        android:textSize="24sp"
+        android:layout_margin="30sp"
         app:layout_constraintTop_toBottomOf="@id/desc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <TextView
-            android:id="@+id/humidityTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Humidity"
-            android:textColor="#3A3A3A"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7C7C7C"
+        android:textSize="24sp"
+        android:text="36"
+        android:layout_marginLeft="5sp"
+        app:layout_constraintTop_toBottomOf="@id/humidityTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/pressureTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#3A3A3A"
+        android:textSize="24sp"
+        android:text="Pressure"
+        app:layout_constraintTop_toBottomOf="@id/humidity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <TextView
+        android:id="@+id/pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#7C7C7C"
+        android:textSize="24sp"
+        android:text="1015"
+        android:layout_marginLeft="5sp"
+        app:layout_constraintTop_toBottomOf="@id/pressureTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-        <TextView
-            android:id="@+id/humidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#7C7C7C"
-            android:textSize="24sp"
-            android:text="36"
-            android:layout_marginLeft="5sp"/>
-        <TextView
-            android:id="@+id/pressureTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#3A3A3A"
-            android:textSize="24sp"
-            android:text="Pressure"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-        <TextView
-            android:id="@+id/pressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#7C7C7C"
-            android:textSize="24sp"
-            android:text="1015"
-            android:layout_marginLeft="5sp"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-    </LinearLayout>
-
-
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See more"
+        android:onClick="goToMore"
+        android:layout_margin="20sp"
+        app:layout_constraintTop_toBottomOf="@id/pressure"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

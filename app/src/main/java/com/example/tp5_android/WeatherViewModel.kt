@@ -12,7 +12,7 @@ class WeatherViewModel : ViewModel() {
         MutableLiveData<WeatherResponse>()
     }
     init {
-        getWeather("Tunis")
+        getWeather("Madrid")
     }
     fun getWeather(city: String){
         RetrofitHelper.retrofitService.getWeather(city).enqueue(object : Callback<WeatherResponse>{
