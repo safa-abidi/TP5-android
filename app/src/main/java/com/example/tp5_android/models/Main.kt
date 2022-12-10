@@ -1,4 +1,4 @@
-package com.example.tp5_android
+package com.example.tp5_android.models
 
 data class Main(
     val feels_like: Double,

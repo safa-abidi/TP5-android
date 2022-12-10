@@ -9,11 +9,14 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.tp5_android.models.Weather
+import com.example.tp5_android.viewModel.WeatherViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
-    private val model : WeatherViewModel by viewModels()
+    //private val model : WeatherViewModel by viewModels()
 
     val spinner : Spinner by lazy {findViewById(R.id.spinner)}
 
@@ -21,16 +24,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var temp : TextView
     private lateinit var humidity : TextView
     private lateinit var pressure : TextView
-    var countries = arrayOf("Madrid", "London", "Tunis")
+    private lateinit var icon : ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+//        val viewModel: WeatherViewModel by viewModels { WeatherViewModel.Factory }
+       val viewModel : WeatherViewModel by viewModels()
+        var countries = arrayOf("Madrid", "London", "Tunis")
         desc = binding.desc
         temp = binding.temperature
         humidity = binding.humidity
         pressure = binding.pressure
+        icon = binding.icon
 
         setContentView(binding.root)
 
@@ -45,19 +53,20 @@ class MainActivity : AppCompatActivity() {
                 //val country = countries.get(position)
                 val country = spinner.selectedItem.toString()
                 Toast.makeText(this@MainActivity, country, Toast.LENGTH_LONG).show()
-                model.getWeather(country)
+                viewModel.getWeather(country)
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {
             }
         }
-        model.weather.observe(this, Observer {
+        viewModel.weather.observe(this, Observer {
             if(it != null){
                 temp.text = it.main.temp.toString()
                 desc.text = it.weather[0].description
                 humidity.text = it.main.humidity.toString()
                 pressure.text = it.main.pressure.toString()
-
+                DownloadImageFromInternet(binding.icon)
+                    .execute("https://openweathermap.org/img/wn/${it.weather[0].icon}@2x.png")
             }
         })
 
