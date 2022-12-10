@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 //        val viewModel: WeatherViewModel by viewModels { WeatherViewModel.Factory }
        val viewModel : WeatherViewModel by viewModels()
-        var countries = arrayOf("Madrid", "London", "Tunis")
+        var countries = arrayOf("Madrid", "London", "Tunis", "Paris", "Barcelona")
         desc = binding.desc
         temp = binding.temperature
         humidity = binding.humidity
